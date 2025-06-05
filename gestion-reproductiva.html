@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestión Reproductiva - Livestock Tracker</title>
+</head>
+<body>
+  <header>
+    <h1>Gestión Reproductiva</h1>
+    <nav>
+      <a href="dashboard.html">← Volver al Panel Principal</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ➕ Registro de eventos -->
+    <section>
+      <h2>Registrar Evento Reproductivo</h2>
+      <form action="#" method="post">
+        <label for="animal-id">ID de chapeta:</label>
+        <input type="text" id="animal-id" name="animal-id"><br>
+
+        <label for="fecha">Fecha del evento:</label>
+        <input type="date" id="fecha" name="fecha"><br>
+
+        <label for="tipo-evento">Tipo de evento:</label>
+        <select id="tipo-evento" name="tipo-evento">
+          <option value="celo">Celo</option>
+          <option value="servicio">Servicio</option>
+          <option value="gestacion">Gestación confirmada</option>
+          <option value="parto">Parto</option>
+        </select><br>
+
+        <label for="observaciones">Observaciones:</label><br>
+        <textarea id="observaciones" name="observaciones" rows="3" cols="40"></textarea><br>
+
+        <button type="submit">Registrar Evento</button>
+      </form>
+    </section>
+
+    <!-- 📋 Historial por animal -->
+    <section>
+      <h2>Historial Reproductivo</h2>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Evento</th>
+            <th>Observaciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>00123</td>
+            <td>2025-05-20</td>
+            <td>Celo</td>
+            <td>Comportamiento inquieto</td>
+          </tr>
+          <tr>
+            <td>00123</td>
+            <td>2025-05-22</td>
+            <td>Servicio</td>
+            <td>Inseminación artificial</td>
+          </tr>
+          <tr>
+            <td>00123</td>
+            <td>2025-06-12</td>
+            <td>Gestación confirmada</td>
+            <td>Diagnóstico positivo</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 📊 Seguimiento -->
+    <section>
+      <h2>Seguimiento y Proyecciones</h2>
+      <p>[Espacio reservado para alertas, ciclos próximos, y gráficas de fertilidad]</p>
+      <ul>
+        <li><a href="#">Animales con servicio reciente</a></li>
+        <li><a href="#">Celo proyectado</a></li>
+        <li><a href="#">Partos próximos</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Livestock Tracker</p>
+  </footer>
+</body>
+</html>
