@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Configuración - Livestock Tracker</title>
+</head>
+<body>
+  <header>
+    <h1>Configuración del Sistema</h1>
+    <nav>
+      <a href="dashboard.html">← Volver al Panel Principal</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ⚙️ Preferencias generales -->
+    <section>
+      <h2>Preferencias Generales</h2>
+      <form action="#" method="post">
+        <label for="idioma">Idioma:</label>
+        <select id="idioma" name="idioma">
+          <option value="es" selected>Español</option>
+          <option value="en">Inglés</option>
+        </select><br>
+
+        <label for="formato-fecha">Formato de Fecha:</label>
+        <select id="formato-fecha" name="formato-fecha">
+          <option value="dd/mm/yyyy">DD/MM/AAAA</option>
+          <option value="yyyy-mm-dd">AAAA-MM-DD</option>
+        </select><br>
+
+        <label for="unidad-peso">Unidad de Peso:</label>
+        <select id="unidad-peso" name="unidad-peso">
+          <option value="kg" selected>Kilogramos (kg)</option>
+          <option value="lb">Libras (lb)</option>
+        </select><br>
+
+        <label for="unidad-volumen">Unidad de Volumen:</label>
+        <select id="unidad-volumen" name="unidad-volumen">
+          <option value="litros" selected>Litros</option>
+          <option value="galones">Galones</option>
+        </select><br>
+
+        <button type="submit">Guardar Configuración</button>
+      </form>
+    </section>
+
+    <!-- 🔔 Notificaciones -->
+    <section>
+      <h2>Notificaciones</h2>
+      <form action="#" method="post">
+        <input type="checkbox" id="notificar-celo" name="notificar-celo" checked>
+        <label for="notificar-celo">Recordar próximos celos</label><br>
+
+        <input type="checkbox" id="notificar-parto" name="notificar-parto" checked>
+        <label for="notificar-parto">Notificar partos próximos</label><br>
+
+        <input type="checkbox" id="notificar-servicio" name="notificar-servicio">
+        <label for="notificar-servicio">Alertar animales sin servicio reciente</label><br>
+
+        <button type="submit">Actualizar Notificaciones</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Livestock Tracker</p>
+  </footer>
+</body>
+</html>
