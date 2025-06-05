@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestión Productiva - Livestock Tracker</title>
+</head>
+<body>
+  <header>
+    <h1>Gestión Productiva</h1>
+    <nav>
+      <a href="dashboard.html">← Volver al Panel Principal</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ➕ Registro de datos productivos -->
+    <section>
+      <h2>Registrar Producción</h2>
+      <form action="#" method="post">
+        <label for="animal-id">ID de chapeta:</label>
+        <input type="text" id="animal-id" name="animal-id"><br>
+
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" name="fecha"><br>
+
+        <label for="leche">Litros de leche:</label>
+        <input type="number" id="leche" name="leche" step="0.1"><br>
+
+        <label for="peso">Peso (kg):</label>
+        <input type="number" id="peso" name="peso" step="0.1"><br>
+
+        <label for="alimentacion">Tipo de alimentación:</label>
+        <input type="text" id="alimentacion" name="alimentacion"><br>
+
+        <button type="submit">Guardar Registro</button>
+      </form>
+    </section>
+
+    <!-- 📋 Listado de registros -->
+    <section>
+      <h2>Historial de Producción</h2>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Leche (L)</th>
+            <th>Peso (kg)</th>
+            <th>Alimentación</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>00123</td>
+            <td>2025-06-01</td>
+            <td>12.5</td>
+            <td>450</td>
+            <td>Pasto + Concentrado</td>
+          </tr>
+          <tr>
+            <td>00456</td>
+            <td>2025-06-01</td>
+            <td>10.2</td>
+            <td>430</td>
+            <td>Solo pasto</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 📊 Sección de gráficos -->
