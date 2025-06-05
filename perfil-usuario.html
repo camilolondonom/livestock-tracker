@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Perfil de Usuario - Livestock Tracker</title>
+</head>
+<body>
+  <header>
+    <h1>Perfil de Usuario</h1>
+    <nav>
+      <a href="dashboard.html">← Volver al Panel Principal</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 👤 Información del perfil -->
+    <section>
+      <h2>Información Personal</h2>
+      <p><strong>Nombre:</strong> Juan Pérez</p>
+      <p><strong>Correo electrónico:</strong> juan.perez@ejemplo.com</p>
+      <p><strong>Rol:</strong> Administrador</p>
+    </section>
+
+    <!-- ✏️ Editar perfil -->
+    <section>
+      <h2>Editar Perfil</h2>
+      <form action="#" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" value="Juan Pérez"><br>
+
+        <label for="correo">Correo electrónico:</label>
+        <input type="email" id="correo" name="correo" value="juan.perez@ejemplo.com"><br>
+
+        <label for="rol">Rol:</label>
+        <select id="rol" name="rol">
+          <option value="admin" selected>Administrador</option>
+          <option value="empleado">Empleado</option>
+        </select><br>
+
+        <button type="submit">Guardar Cambios</button>
+      </form>
+    </section>
+
+    <!-- 🔒 Cambiar contraseña -->
+    <section>
+      <h2>Cambiar Contraseña</h2>
+      <form action="#" method="post">
+        <label for="password-actual">Contraseña actual:</label>
+        <input type="password" id="password-actual" name="password-actual"><br>
+
+        <label for="nueva-password">Nueva contraseña:</label>
+        <input type="password" id="nueva-password" name="nueva-password"><br>
+
+        <label for="confirmar-password">Confirmar nueva contraseña:</label>
+        <input type="password" id="confirmar-password" name="confirmar-password"><br>
+
+        <button type="submit">Actualizar Contraseña</button>
+      </form>
+    </section>
+
+    <!-- 🚪 Cerrar sesión -->
+    <section>
+      <h2>Sesión</h2>
+      <a href="index.html">Cerrar sesión</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Livestock Tracker</p>
+  </footer>
+</body>
+</html>
