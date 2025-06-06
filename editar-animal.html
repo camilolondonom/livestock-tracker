@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Animal - Livestock Tracker</title>
+</head>
+<body>
+  <header>
+    <h1>Editar Animal</h1>
+    <nav>
+      <a href="gestion-animales.html">← Volver a la Lista de Animales</a>
+    </nav>
+  </header>
+
+  <main>
+    <form action="#" method="post">
+      <!-- 🐄 Información general -->
+      <fieldset>
+        <legend>Información General</legend>
+
+        <label for="id">ID Chapeta:</label>
+        <input type="text" id="id" name="id" value="00123" readonly><br>
+
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" value="Estrella"><br>
+
+        <label for="raza">Raza:</label>
+        <input type="text" id="raza" name="raza" value="Holstein"><br>
+
+        <label for="sexo">Sexo:</label>
+        <select id="sexo" name="sexo">
+          <option value="hembra" selected>Hembra</option>
+          <option value="macho">Macho</option>
+        </select><br>
+
+        <label for="fecha-nacimiento">Fecha de nacimiento:</label>
+        <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" value="2021-03-15"><br>
+      </fieldset>
+
+      <!-- 📊 Datos productivos -->
+      <fieldset>
+        <legend>Datos Productivos</legend>
+
+        <label for="peso">Peso actual (kg):</label>
+        <input type="number" id="peso" name="peso" value="530" step="0.1"><br>
+
+        <label for="leche">Producción diaria de leche (L):</label>
+        <input type="number" id="leche" name="leche" value="18" step="0.1"><br>
+      </fieldset>
+
+      <!-- 🔍 Estado -->
+      <fieldset>
+        <legend>Estado Actual</legend>
+
+        <label for="estado">Estado reproductivo/productivo:</label>
+        <select id="estado" name="estado">
+          <option value="producción">En producción</option>
+          <option value="gestando" selected>Gestando</option>
+          <option value="seca">Seca</option>
+          <option value="ternero">Ternero</option>
+          <option value="otro">Otro</option>
+        </select><br>
+      </fieldset>
+
+      <!-- ✅ Guardar cambios -->
+      <button type="submit">Guardar Cambios</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Livestock Tracker</p>
+  </footer>
+</body>
+</html>
