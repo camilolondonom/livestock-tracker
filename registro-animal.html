@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registrar Nuevo Animal - Livestock Tracker</title>
+</head>
+<body>
+  <header>
+    <h1>Registrar Nuevo Animal</h1>
+    <nav>
+      <a href="gestion-animales.html">← Volver a la Lista de Animales</a>
+    </nav>
+  </header>
+
+  <main>
+    <form action="#" method="post">
+      <!-- 🐄 Información general -->
+      <fieldset>
+        <legend>Información General</legend>
+
+        <label for="id">ID Chapeta:</label>
+        <input type="text" id="id" name="id" required><br>
+
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre"><br>
+
+        <label for="raza">Raza:</label>
+        <input type="text" id="raza" name="raza"><br>
+
+        <label for="sexo">Sexo:</label>
+        <select id="sexo" name="sexo">
+          <option value="hembra">Hembra</option>
+          <option value="macho">Macho</option>
+        </select><br>
+
+        <label for="fecha-nacimiento">Fecha de nacimiento:</label>
+        <input type="date" id="fecha-nacimiento" name="fecha-nacimiento"><br>
+      </fieldset>
+
+      <!-- 📊 Datos productivos iniciales -->
+      <fieldset>
+        <legend>Datos Productivos Iniciales</legend>
+
+        <label for="peso">Peso actual (kg):</label>
+        <input type="number" id="peso" name="peso" step="0.1"><br>
+
+        <label for="leche">Producción diaria de leche (L):</label>
+        <input type="number" id="leche" name="leche" step="0.1"><br>
+      </fieldset>
+
+      <!-- 🔍 Estado -->
+      <fieldset>
+        <legend>Estado Actual</legend>
+
+        <label for="estado">Estado reproductivo o productivo:</label>
+        <select id="estado" name="estado">
+          <option value="producción">En producción</option>
+          <option value="gestando">Gestando</option>
+          <option value="seca">Seca</option>
+          <option value="ternero">Ternero</option>
+          <option value="otro">Otro</option>
+        </select><br>
+      </fieldset>
+
+      <!-- ✅ Botón de envío -->
+      <button type="submit">Registrar Animal</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Livestock Tracker</p>
+  </footer>
+</body>
+</html>
