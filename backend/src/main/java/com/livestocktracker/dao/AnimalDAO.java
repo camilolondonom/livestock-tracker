@@ -47,7 +47,7 @@ public class AnimalDAO {
         boolean exito = false;
 
         try {
-            conexion = ConexionDB.obtenerConexion();
+            conexion = ConexionDB.getConexion();
             ps = conexion.prepareStatement(INSERTAR_ANIMAL);
 
             // Establecer los parámetros (usando los Getters del objeto Animal)
@@ -91,7 +91,7 @@ public class AnimalDAO {
         ResultSet rs = null;
 
         try {
-            conexion = ConexionDB.obtenerConexion();
+            conexion = ConexionDB.getConexion();
             ps = conexion.prepareStatement(SELECCIONAR_TODOS);
             
             rs = ps.executeQuery(); // Ejecutar la consulta
@@ -138,7 +138,7 @@ public class AnimalDAO {
         boolean filaActualizada = false;
 
         try {
-            conexion = ConexionDB.obtenerConexion();
+            conexion = ConexionDB.getConexion();
             ps = conexion.prepareStatement(ACTUALIZAR_ANIMAL);
 
             // 1. Establecer los nuevos valores
@@ -178,7 +178,7 @@ public class AnimalDAO {
         boolean filaEliminada = false;
 
         try {
-            conexion = ConexionDB.obtenerConexion();
+            conexion = ConexionDB.getConexion();
             ps = conexion.prepareStatement(ELIMINAR_ANIMAL);
 
             // Establecer el ID a eliminar
