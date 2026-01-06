@@ -1,10 +1,11 @@
 package com.livestocktracker.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import com.livestocktracker.model.Reproduccion;
 import com.livestocktracker.util.ConexionDB;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ReproduccionDAO {
     

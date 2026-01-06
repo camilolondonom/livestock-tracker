@@ -5,11 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-import java.math.BigDecimal;
+import java.util.List; // <--- ASEGÚRATE DE QUE ESTA LÍNEA ESTÉ PRESENTE
+
 import com.livestocktracker.model.Produccion;
 import com.livestocktracker.util.ConexionDB;
-
 
 public class ProduccionDAO {
     

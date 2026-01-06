@@ -66,14 +66,12 @@ public class AnimalDAO {
 
         } catch (SQLException e) {
             System.err.println("Error al insertar animal: " + e.getMessage());
-            e.printStackTrace();
         } finally {
             // Cierre de recursos (IMPORTANTE)
             try {
                 if (ps != null) ps.close();
                 ConexionDB.cerrarConexion(conexion);
             } catch (SQLException e) {
-                e.printStackTrace();
             }
         }
         return exito;
@@ -113,7 +111,6 @@ public class AnimalDAO {
 
         } catch (SQLException e) {
             System.err.println("Error al consultar todos los animales: " + e.getMessage());
-            e.printStackTrace();
         } finally {
             // Cierre de recursos
             try {
@@ -121,7 +118,6 @@ public class AnimalDAO {
                 if (ps != null) ps.close();
                 ConexionDB.cerrarConexion(conexion); 
             } catch (SQLException e) {
-                e.printStackTrace();
             }
         }
         return animales;
@@ -155,13 +151,11 @@ public class AnimalDAO {
 
         } catch (SQLException e) {
             System.err.println("Error al actualizar el animal: " + e.getMessage());
-            e.printStackTrace();
         } finally {
             try {
                 if (ps != null) ps.close();
                 ConexionDB.cerrarConexion(conexion);
             } catch (SQLException e) {
-                e.printStackTrace();
             }
         }
         return filaActualizada;
@@ -188,13 +182,11 @@ public class AnimalDAO {
 
         } catch (SQLException e) {
             System.err.println("Error al eliminar el animal: " + e.getMessage());
-            e.printStackTrace();
         } finally {
             try {
                 if (ps != null) ps.close();
                 ConexionDB.cerrarConexion(conexion);
             } catch (SQLException e) {
-                e.printStackTrace();
             }
         }
         return filaEliminada;

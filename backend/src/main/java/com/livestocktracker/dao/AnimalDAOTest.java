@@ -8,7 +8,7 @@ import com.livestocktracker.model.Animal;
 public class AnimalDAOTest {
     
     // Aquí declaramos la variable que nos permitirá llamar a los métodos CRUD
-    private static AnimalDAO animalDAO = new AnimalDAO();
+    private static final AnimalDAO animalDAO = new AnimalDAO();
 
     // El punto de entrada del programa de prueba
     public static void main(String[] args) {

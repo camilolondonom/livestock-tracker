@@ -5,14 +5,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexionDB {
-
     private static final String URL_DB = "jdbc:mysql://localhost:3306/ganaderiadb";
     private static final String USUARIO_DB = "livestock_user";
     private static final String CONTRASENA_DB = "1234"; 
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 
-    // Cambiamos 'obtenerConexion' por 'getConexion' para que los DAOs lo encuentren
-    public static Connection getConexion() { 
+    public static Connection getConexion() {
         Connection conexion = null; 
         try {
             Class.forName(DRIVER);
@@ -30,7 +28,7 @@ public class ConexionDB {
             try {
                 conexion.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                System.err.println("Error al cerrar conexión: " + e.getMessage());
             }
         }
     }
