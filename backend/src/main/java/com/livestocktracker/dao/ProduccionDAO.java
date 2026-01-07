@@ -22,7 +22,8 @@ public class ProduccionDAO {
             ps.setInt(4, p.getIdUsuario());
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            System.err.println("Error en ProduccionDAO: " + e.getMessage());
             return false;
         }
     }
@@ -44,7 +45,8 @@ public class ProduccionDAO {
                 lista.add(p);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            System.err.println("Error en ProduccionDAO: " + e.getMessage());
         }
         return lista;
     }
