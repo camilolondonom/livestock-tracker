@@ -1,5 +1,5 @@
 EVIDENCIA: GA7-220501096-AA2-EV01 - Codificación de módulos del software. 
-APRENDIZ: Camilo Londoño Monsalve
+APRENDIZ: Camilo Londoño Monsalve - ANALISIS Y DESARROLLO DE SOFTWARE. (2977362)
 
 PROYECTO: Livestock Tracker (Sistema de Gestión Ganadera)
 
@@ -8,7 +8,5 @@ ENLACE AL REPOSITORIO (GitHub): https://github.com/camilolondonom/livestock-trac
 NOTAS PARA EL INSTRUCTOR:
 
 El repositorio contiene la estructura completa del proyecto (Backend, Database y Frontend).
-
-Se ha configurado un archivo .gitignore en la raíz para optimizar el historial de versiones.
 
 Los commits reflejan el proceso de desarrollo de los módulos de Animales, Producción y Reproducción utilizando JDBC.
