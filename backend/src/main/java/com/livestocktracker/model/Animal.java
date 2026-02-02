@@ -1,23 +1,40 @@
 package com.livestocktracker.model; 
 
-import java.sql.Date; 
+import java.sql.Date;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity 
+@Table(name = "animales") 
 public class Animal {
     
-    // 1. Atributos (Variables de Instancia en camelCase)
+    // 2. ATRIBUTOS CON SUS ANOTACIONES
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
+    @Column(name = "id_animal") 
     private int idAnimal; 
+
     private String chapeta;
     private String raza;
-    private Date fechaNacimiento; 
-    private String estado; 
-    private int idUsuario; // FK para la tabla 'usuario'
 
-    // 2. Constructor Vacío 
+    @Column(name = "fecha_nacimiento") 
+    private Date fechaNacimiento; 
+
+    private String estado; 
+
+    @Column(name = "id_usuario") 
+    private int idUsuario; 
+
+    // 3. CONSTRUCTOR VACÍO 
     public Animal() {
     }
 
-    // 3. Getters y Setters (Nombramiento de métodos: getXxx/setXxx en camelCase)
-
+    // 4. GETTERS Y SETTERS (Tus originales impecables)
     public int getIdAnimal() {
         return idAnimal;
     }
@@ -34,7 +51,6 @@ public class Animal {
         this.chapeta = chapeta;
     }
     
-    // Getters y Setters para 'raza'
     public String getRaza() {
         return raza;
     }
@@ -43,7 +59,6 @@ public class Animal {
         this.raza = raza;
     }
 
-    // Getters y Setters para 'fechaNacimiento'
     public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
@@ -52,7 +67,6 @@ public class Animal {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    // Getters y Setters para 'estado'
     public String getEstado() {
         return estado;
     }
@@ -61,7 +75,6 @@ public class Animal {
         this.estado = estado;
     }
 
-    // Getters y Setters para 'idUsuario'
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -70,7 +83,6 @@ public class Animal {
         this.idUsuario = idUsuario;
     }
     
-    // Sugerencia: Método toString() para facilitar la depuración
     @Override
     public String toString() {
         return "Animal{" +
