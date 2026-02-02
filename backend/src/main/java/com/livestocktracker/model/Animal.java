@@ -34,7 +34,7 @@ public class Animal {
     public Animal() {
     }
 
-    // 4. GETTERS Y SETTERS (Tus originales impecables)
+    // 4. GETTERS Y SETTERS
     public int getIdAnimal() {
         return idAnimal;
     }
