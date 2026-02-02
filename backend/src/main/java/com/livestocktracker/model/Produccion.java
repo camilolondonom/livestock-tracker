@@ -1,13 +1,32 @@
 package com.livestocktracker.model;
 
-import java.sql.Date;
 import java.math.BigDecimal;
+import java.sql.Date;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+
+@Entity
+@Table(name = "produccion")
 public class Produccion {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_produccion")
     private int idProduccion;
+
     private Date fecha;
+
     private BigDecimal litros;
+
+    @Column(name = "id_animal")
     private int idAnimal;
+
+    @Column(name = "id_usuario")
     private int idUsuario;
 
     // Constructores
