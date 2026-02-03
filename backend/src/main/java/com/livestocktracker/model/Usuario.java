@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "usuarios") // Nombre de la tabla en MySQL
+@Table(name = "usuario") // Nombre de la tabla en MySQL
 public class Usuario {
 
     @Id

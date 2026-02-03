@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity 
-@Table(name = "animales") 
+@Table(name = "animal") 
 public class Animal {
     
     // 2. ATRIBUTOS CON SUS ANOTACIONES
@@ -23,9 +23,9 @@ public class Animal {
     private String raza;
 
     @Column(name = "fecha_nacimiento") 
-    private Date fechaNacimiento; 
+    private java.sql.Date fechaNacimiento; 
 
-    private String estado; 
+    private String estado; // ENUM en SQL: 'activa', 'seca', etc.
 
     @Column(name = "id_usuario") 
     private int idUsuario; 

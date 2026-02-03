@@ -19,9 +19,8 @@ public class Produccion {
     @Column(name = "id_produccion")
     private int idProduccion;
 
-    private Date fecha;
-
-    private BigDecimal litros;
+    private java.sql.Date fecha;
+    private java.math.BigDecimal litros; // Precisión decimal confirmada
 
     @Column(name = "id_animal")
     private int idAnimal;
