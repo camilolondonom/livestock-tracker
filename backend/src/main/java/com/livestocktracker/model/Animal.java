@@ -20,6 +20,7 @@ public class Animal {
     private int idAnimal; 
 
     private String chapeta;
+    private String nombre;
     private String raza;
 
     @Column(name = "fecha_nacimiento") 
@@ -51,6 +52,14 @@ public class Animal {
         this.chapeta = chapeta;
     }
     
+    public String getNombre() { 
+        return nombre; 
+    }
+
+    public void setNombre(String nombre) { 
+        this.nombre = nombre; 
+    }
+
     public String getRaza() {
         return raza;
     }
