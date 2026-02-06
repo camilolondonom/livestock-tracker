@@ -1,96 +1,83 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Gestión de Animales - Livestock Tracker</title>
-  <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Gestión de Animales - Livestock Tracker</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Gestión de Animales</h1>
+      <nav>
+        <a href="dashboard.html">← Volver al Panel Principal</a>
+      </nav>
+    </header>
 
-</head>
-<body>
-  <header>
-    <h1>Gestión de Animales</h1>
-    <nav>
-      <a href="dashboard.html">← Volver al Panel Principal</a>
-    </nav>
-  </header>
+    <main>
+      <!--  Búsqueda por chapeta -->
+      <section>
+        <h2>Buscar Animal</h2>
+        <form action="#" method="get">
+          <label for="buscar-id">ID de chapeta:</label>
+          <input
+            type="text"
+            id="buscar-id"
+            name="buscar-id"
+            placeholder="Ej: 00123"
+          />
+          <button type="submit">Buscar</button>
+        </form>
+      </section>
 
-  <main>
-    <!--  Búsqueda por chapeta -->
-    <section>
-      <h2>Buscar Animal</h2>
-      <form action="#" method="get">
-        <label for="buscar-id">ID de chapeta:</label>
-        <input type="text" id="buscar-id" name="buscar-id" placeholder="Ej: 00123">
-        <button type="submit">Buscar</button>
-      </form>
-    </section>
+      <!--  Listado de animales -->
+      <section>
+        <h2>Listado de Animales</h2>
+        <table border="1">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Raza</th>
+              <th>Edad</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-animales-body"></tbody>
+        </table>
+      </section>
 
-    <!--  Listado de animales -->
-    <section>
-      <h2>Listado de Animales</h2>
-      <table border="1">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Raza</th>
-            <th>Edad</th>
-            <th>Estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Aquí irán los registros, de momento fijos como ejemplo -->
-          <tr>
-            <td>00123</td>
-            <td>Luna</td>
-            <td>Holstein</td>
-            <td>3 años</td>
-            <td>Activa</td>
-          </tr>
-          <tr>
-            <td>00456</td>
-            <td>Max</td>
-            <td>Jersey</td>
-            <td>2 años</td>
-            <td>En producción</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+      <!--  Registro nuevo animal -->
+      <section>
+        <h2>Registrar Nuevo Animal</h2>
+        <form action="#" method="post">
+          <label for="id">ID de chapeta:</label>
+          <input type="text" id="id" name="id" /><br />
 
-    <!--  Registro nuevo animal -->
-    <section>
-      <h2>Registrar Nuevo Animal</h2>
-      <form action="#" method="post">
-        <label for="id">ID de chapeta:</label>
-        <input type="text" id="id" name="id"><br>
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" /><br />
 
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre"><br>
+          <label for="raza">Raza:</label>
+          <input type="text" id="raza" name="raza" /><br />
 
-        <label for="raza">Raza:</label>
-        <input type="text" id="raza" name="raza"><br>
+          <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+<input type="date" id="fechaNacimiento" name="fechaNacimiento"><br>
 
-        <label for="edad">Edad (en años):</label>
-        <input type="number" id="edad" name="edad"><br>
+          <label for="estado">Estado:</label>
+          <select id="estado" name="estado">
+            <option value="activa">Activa</option>
+            <option value="en_produccion">En producción</option>
+            <option value="preñada">Preñada</option>
+            <option value="inactiva">Inactiva</option></select
+          ><br />
 
-        <label for="estado">Estado:</label>
-        <select id="estado" name="estado">
-          <option value="activa">Activa</option>
-          <option value="en_produccion">En producción</option>
-          <option value="preñada">Preñada</option>
-          <option value="inactiva">Inactiva</option>
-        </select><br>
+          <button type="submit">Registrar Animal</button>
+        </form>
+      </section>
+    </main>
 
-        <button type="submit">Registrar Animal</button>
-      </form>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 Livestock Tracker</p>
-  </footer>
-  <script src="main.js"></script>
-
-</body>
+    <footer>
+      <p>&copy; 2025 Livestock Tracker</p>
+    </footer>
+    <script src="main.js"></script>
+  </body>
 </html>
