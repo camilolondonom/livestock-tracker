@@ -28,12 +28,24 @@ async function manejarLogin(e) {
     const email = document.getElementById('username').value;
     const contrasena = document.getElementById('password').value;
 
-    console.log("Iniciando sesión para:", email);
-    
-    // Por ahora, validación local para avanzar al dashboard
-    // En el siguiente paso crearemos el endpoint en Java para validar esto
-    if (email && contrasena) {
-        window.location.href = "dashboard.html";
+    try {
+        const respuesta = await fetch('http://localhost:8080/api/usuarios/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, contrasena })
+        });
+
+        if (respuesta.ok) {
+            const usuario = await respuesta.json();
+            alert(`¡Bienvenido de nuevo, ${usuario.nombre}!`);
+            window.location.href = "dashboard.html"; // Ahora sí, con permiso
+        } else {
+            const errorMsg = await respuesta.text();
+            alert("Error: " + errorMsg);
+        }
+    } catch (error) {
+        console.error("Error al iniciar sesión:", error);
+        alert("No se pudo conectar con el servidor.");
     }
 }
 
