@@ -1,8 +1,13 @@
 package com.livestocktracker.model;
 
-import jakarta.persistence.*;
 import java.time.LocalDate;
-import java.time.Period;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "animal")
@@ -22,12 +27,13 @@ public class Animal {
     private String estado;
 
     // Método especial para calcular la edad automáticamente
-    public Integer getEdad() {
-        if (this.fechaNacimiento != null) {
-            return Period.between(this.fechaNacimiento, LocalDate.now()).getYears();
-        }
-        return 0;
+    public String getEdad() {
+    if (this.fechaNacimiento != null) {
+        java.time.Period p = java.time.Period.between(this.fechaNacimiento, java.time.LocalDate.now());
+        return p.getYears() + " años, " + p.getMonths() + " meses, " + p.getDays() + " días";
     }
+    return "Sin fecha";
+}
 
     // Getters y Setters
     public Integer getId() { return id; }
