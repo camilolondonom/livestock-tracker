@@ -1,12 +1,26 @@
-EVIDENCIA: GA7-220501096-AA2-EV01 - Codificación de módulos del software. 
-APRENDIZ: Camilo Londoño Monsalve - ANALISIS Y DESARROLLO DE SOFTWARE. (2977362)
-
-PROYECTO: Livestock Tracker (Sistema de Gestión Ganadera)
+Contenido para el documento de la Evidencia GA7-220501096-AA2-EV02
+EVIDENCIA: GA7-220501096-AA2-EV02 - Módulos de software codificados y probados. APRENDIZ: Camilo Londoño Monsalve PROGRAMA: ANÁLISIS Y DESARROLLO DE SOFTWARE (2977362) PROYECTO: Livestock Tracker (Sistema de Gestión Ganadera)
 
 ENLACE AL REPOSITORIO (GitHub): https://github.com/camilolondonom/livestock-tracker.git
 
+RESUMEN TÉCNICO DE LA EVOLUCIÓN DEL MÓDULO:
+Para esta evidencia, el proyecto ha evolucionado de una implementación básica a una aplicación web funcional y probada. Se destacan los siguientes puntos:
+
+Arquitectura Web: Se ha implementado un modelo de comunicación asíncrona. Aunque la guía menciona Servlets y JSP, el proyecto utiliza Spring Boot (basado en el motor de servlets Tomcat) para el backend y una interfaz Frontend dinámica (HTML5/JS) que consume servicios REST, logrando una experiencia de usuario moderna y fluida.
+
+Módulos Funcionales: Se completó la lógica de negocio para:
+
+Gestión de Usuarios: Registro y autenticación.
+
+Gestión de Animales: CRUD completo (Crear, Leer, Actualizar y Eliminar) probado y verificado.
+
+Lógica de Negocio Avanzada: Se integró el cálculo automático de edad (años, meses, días) directamente en el backend, optimizando la precisión de los datos ganaderos.
+
+Métodos HTTP: Se utilizan de manera estricta los métodos GET (consultas de inventario) y POST (registro de nuevos ejemplares), garantizando el cumplimiento de los estándares de desarrollo web.
+
 NOTAS PARA EL INSTRUCTOR:
+Pruebas Realizadas: Se verificó la persistencia de datos en MySQL y la eliminación exitosa de registros desde la interfaz web (se adjuntan capturas en el archivo ZIP).
 
-El repositorio contiene la estructura completa del proyecto (Backend, Database y Frontend).
+Versionamiento: El historial de Git refleja la transición y limpieza de código, incluyendo la resolución de advertencias de seguridad de tipos y nulidad para asegurar un software robusto.
 
-Los commits reflejan el proceso de desarrollo de los módulos de Animales, Producción y Reproducción utilizando JDBC.
+Instrucciones de Ejecución: El proyecto incluye el archivo main.js configurado para conectar con la API de Spring Boot, facilitando la visualización en tiempo real.
