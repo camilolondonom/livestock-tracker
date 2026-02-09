@@ -1,26 +1,31 @@
-Contenido para el documento de la Evidencia GA7-220501096-AA2-EV02
 EVIDENCIA: GA7-220501096-AA2-EV02 - Módulos de software codificados y probados. APRENDIZ: Camilo Londoño Monsalve PROGRAMA: ANÁLISIS Y DESARROLLO DE SOFTWARE (2977362) PROYECTO: Livestock Tracker (Sistema de Gestión Ganadera)
 
 ENLACE AL REPOSITORIO (GitHub): https://github.com/camilolondonom/livestock-tracker.git
 
 RESUMEN TÉCNICO DE LA EVOLUCIÓN DEL MÓDULO:
-Para esta evidencia, el proyecto ha evolucionado de una implementación básica a una aplicación web funcional y probada. Se destacan los siguientes puntos:
+Para esta evidencia, el proyecto ha trascendido de una implementación estructural básica a una aplicación web robusta, funcional y con estándares de calidad de software. Se destacan los siguientes hitos técnicos:
 
-Arquitectura Web: Se ha implementado un modelo de comunicación asíncrona. Aunque la guía menciona Servlets y JSP, el proyecto utiliza Spring Boot (basado en el motor de servlets Tomcat) para el backend y una interfaz Frontend dinámica (HTML5/JS) que consume servicios REST, logrando una experiencia de usuario moderna y fluida.
+Arquitectura y Frameworks: Se migró exitosamente hacia Spring Boot 3, utilizando el motor de servlets Tomcat embebido. Esto permite que la aplicación sea Stand-alone, facilitando su despliegue y ejecución autónoma sin dependencias de servidores externos complejos.
 
-Módulos Funcionales: Se completó la lógica de negocio para:
+Módulos Funcionales (CRUD y Lógica):
 
-Gestión de Usuarios: Registro y autenticación.
+Gestión de Usuarios: Implementación de registro y un sistema de autenticación (Login) funcional que valida credenciales contra la base de datos MySQL.
 
-Gestión de Animales: CRUD completo (Crear, Leer, Actualizar y Eliminar) probado y verificado.
+Gestión de Animales: Desarrollo del ciclo completo de datos (Crear, Leer, Actualizar y Eliminar). Se incluyó el cálculo automático de edad en tiempo real, optimizando el backend para la toma de decisiones ganaderas.
 
-Lógica de Negocio Avanzada: Se integró el cálculo automático de edad (años, meses, días) directamente en el backend, optimizando la precisión de los datos ganaderos.
+Módulo de Producción: Inicio de la codificación de controladores para el seguimiento productivo de los ejemplares.
 
-Métodos HTTP: Se utilizan de manera estricta los métodos GET (consultas de inventario) y POST (registro de nuevos ejemplares), garantizando el cumplimiento de los estándares de desarrollo web.
+Interfaz y Experiencia de Usuario (UX/UI):
+
+Comunicación asíncrona mediante Fetch API (JavaScript), eliminando recargas innecesarias de página.
+
+Diseño 100% Responsivo mediante CSS Media Queries, permitiendo que la interfaz se adapte a dispositivos móviles.
+
+Estándares de Codificación: El código fuente ha sido documentado exhaustivamente mediante comentarios técnicos y sigue las convenciones CamelCase, garantizando la mantenibilidad del software.
 
 NOTAS PARA EL INSTRUCTOR:
-Pruebas Realizadas: Se verificó la persistencia de datos en MySQL y la eliminación exitosa de registros desde la interfaz web (se adjuntan capturas en el archivo ZIP).
+Pruebas Realizadas: Se incluyen evidencias fotográficas de la persistencia de datos en MySQL y el correcto funcionamiento del método DELETE desde el frontend.
 
-Versionamiento: El historial de Git refleja la transición y limpieza de código, incluyendo la resolución de advertencias de seguridad de tipos y nulidad para asegurar un software robusto.
+Versionamiento: El historial de Git en la rama feature/modulo-usuarios evidencia un desarrollo incremental y organizado por módulos.
 
-Instrucciones de Ejecución: El proyecto incluye el archivo main.js configurado para conectar con la API de Spring Boot, facilitando la visualización en tiempo real.
+Ejecución: El proyecto se puede ejecutar como un servicio web tradicional o como un archivo ejecutable JAR (Stand-alone).
