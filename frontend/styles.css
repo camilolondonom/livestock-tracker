@@ -110,6 +110,35 @@ th {
   color: #fdfac5;
 }
 
+/* ==================== TABLAS DINÁMICAS ==================== */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 1.5rem;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+th {
+  background-color: #3d4d29;
+  color: #fdfac5;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+/* Zebra Striping para mejor lectura */
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+  background-color: #f2eead; /* Color de selección suave */
+}
+
 /* ==================== FOOTER ==================== */
 footer {
   text-align: center;
@@ -119,18 +148,33 @@ footer {
   margin-top: 2rem;
 }
 
-/* ==================== RESPONSIVE ==================== */
+/* ==================== ACCIONES DE MÓDULOS ==================== */
+.btn-delete {
+  background-color: #c0392b; /* Rojo para eliminación */
+  color: white;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+  transition: background 0.3s ease;
+}
+
+.btn-delete:hover {
+  background-color: #e74c3c;
+}
+
+/* ==================== RESPONSIVE (Mejorado) ==================== */
 @media (max-width: 768px) {
-  body {
+  /* Forzamos a la tabla a permitir scroll horizontal si es muy ancha */
+  .table-container {
+    overflow-x: auto;
+  }
+  
+  form {
     padding: 1rem;
+    width: 90%;
   }
 
-  form, table {
-    width: 100%;
-  }
-
-  nav a {
-    display: block;
-    margin-bottom: 0.5rem;
+  h1 {
+    font-size: 1.5rem;
+    text-align: center;
   }
 }
