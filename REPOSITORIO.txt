@@ -1,31 +1,14 @@
-EVIDENCIA: GA7-220501096-AA2-EV02 - Módulos de software codificados y probados. APRENDIZ: Camilo Londoño Monsalve PROGRAMA: ANÁLISIS Y DESARROLLO DE SOFTWARE (2977362) PROYECTO: Livestock Tracker (Sistema de Gestión Ganadera)
+# Livestock Tracker - Gestión Ganadera
 
-ENLACE AL REPOSITORIO (GitHub): https://github.com/camilolondonom/livestock-tracker.git
+Sistema de control de inventario animal y producción lechera.
 
-RESUMEN TÉCNICO DE LA EVOLUCIÓN DEL MÓDULO:
-Para esta evidencia, el proyecto ha trascendido de una implementación estructural básica a una aplicación web robusta, funcional y con estándares de calidad de software. Se destacan los siguientes hitos técnicos:
+## 🚀 Tecnologías utilizadas
+- **Backend:** Java 17, Spring Boot 3, Spring Data JPA.
+- **Frontend:** HTML5, CSS3, JavaScript (Vanilla).
+- **Base de Datos:** MySQL 8.0.
 
-Arquitectura y Frameworks: Se migró exitosamente hacia Spring Boot 3, utilizando el motor de servlets Tomcat embebido. Esto permite que la aplicación sea Stand-alone, facilitando su despliegue y ejecución autónoma sin dependencias de servidores externos complejos.
-
-Módulos Funcionales (CRUD y Lógica):
-
-Gestión de Usuarios: Implementación de registro y un sistema de autenticación (Login) funcional que valida credenciales contra la base de datos MySQL.
-
-Gestión de Animales: Desarrollo del ciclo completo de datos (Crear, Leer, Actualizar y Eliminar). Se incluyó el cálculo automático de edad en tiempo real, optimizando el backend para la toma de decisiones ganaderas.
-
-Módulo de Producción: Inicio de la codificación de controladores para el seguimiento productivo de los ejemplares.
-
-Interfaz y Experiencia de Usuario (UX/UI):
-
-Comunicación asíncrona mediante Fetch API (JavaScript), eliminando recargas innecesarias de página.
-
-Diseño 100% Responsivo mediante CSS Media Queries, permitiendo que la interfaz se adapte a dispositivos móviles.
-
-Estándares de Codificación: El código fuente ha sido documentado exhaustivamente mediante comentarios técnicos y sigue las convenciones CamelCase, garantizando la mantenibilidad del software.
-
-NOTAS PARA EL INSTRUCTOR:
-Pruebas Realizadas: Se incluyen evidencias fotográficas de la persistencia de datos en MySQL y el correcto funcionamiento del método DELETE desde el frontend.
-
-Versionamiento: El historial de Git en la rama feature/modulo-usuarios evidencia un desarrollo incremental y organizado por módulos.
-
-Ejecución: El proyecto se puede ejecutar como un servicio web tradicional o como un archivo ejecutable JAR (Stand-alone).
+## 🛠️ Instalación
+1. Importar la base de datos desde el archivo SQL incluido.
+2. Configurar `application.properties` con tus credenciales de MySQL.
+3. Ejecutar el backend con Maven o desde tu IDE.
+4. Abrir el frontend con Live Server.
