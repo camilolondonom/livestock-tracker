@@ -178,3 +178,50 @@ footer {
     text-align: center;
   }
 }
+
+/* ==================== ESTADOS REPRODUCTIVOS ==================== */
+.badge {
+  padding: 0.25rem 0.6rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.badge-reproduccion {
+  background-color: #f39c12; /* Naranja para alertas de reproducción */
+  color: white;
+}
+
+.badge-produccion {
+  background-color: #27ae60; /* Verde para producción */
+  color: white;
+}
+
+/* Efecto Hover para las filas de la tabla */
+tbody tr {
+  transition: all 0.2s ease;
+}
+
+tbody tr:hover {
+  transform: scale(1.01);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+/* efecto para tarjetas de estadística */
+
+.stat-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    flex: 1;
+    border-top: 5px solid #2c3e50;
+}
+.stat-card h3 {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    text-transform: uppercase;
+}

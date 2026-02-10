@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.livestocktracker.model.Animal;
 
 @Repository
-public interface AnimalRepository extends JpaRepository<Animal, Integer> {
+public interface AnimalRepository extends JpaRepository<Animal, Long> {
 }

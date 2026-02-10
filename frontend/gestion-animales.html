@@ -14,64 +14,76 @@
     </header>
 
     <main>
-      <!--  Búsqueda por chapeta -->
       <section>
         <h2>Buscar Animal</h2>
-        <form action="#" method="get">
+        <form id="search-form" onsubmit="event.preventDefault();">
           <label for="buscar-id">ID de chapeta:</label>
-          <input
-            type="text"
-            id="buscar-id"
-            name="buscar-id"
-            placeholder="Ej: 00123"
-          />
-          <button type="submit">Buscar</button>
+          <input type="text" id="buscar-id" placeholder="Ej: 00123" />
         </form>
       </section>
 
-      <!--  Listado de animales -->
       <section>
-        <h2>Listado de Animales</h2>
-        <table border="1">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Raza</th>
-              <th>Edad</th>
-              <th>Estado</th>
-            </tr>
-          </thead>
-          <tbody id="tabla-animales-body"></tbody>
-        </table>
+        <h2>Inventario Ganadero</h2>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Chapeta</th>
+                <th>Nombre</th>
+                <th>Raza</th>
+                <th>Edad</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-animales-body"></tbody>
+          </table>
+        </div>
       </section>
 
-      <!--  Registro nuevo animal -->
-      <section>
-        <h2>Registrar Nuevo Animal</h2>
-        <form action="#" method="post">
-          <label for="id">ID de chapeta:</label>
-          <input type="text" id="id" name="id" /><br />
+      <section id="seccion-formulario">
+        <h2 id="form-titulo">Registrar Nuevo Animal</h2>
+        <form id="animal-form">
+          <input type="hidden" id="animal-id-interno" />
+          <label for="chapeta">ID Chapeta:</label>
+          <input type="text" id="chapeta" required />
 
           <label for="nombre">Nombre:</label>
-          <input type="text" id="nombre" name="nombre" /><br />
+          <input type="text" id="nombre" />
 
           <label for="raza">Raza:</label>
-          <input type="text" id="raza" name="raza" /><br />
+          <input type="text" id="raza" />
 
           <label for="fechaNacimiento">Fecha de Nacimiento:</label>
-<input type="date" id="fechaNacimiento" name="fechaNacimiento"><br>
+          <input type="date" id="fechaNacimiento" />
 
-          <label for="estado">Estado:</label>
-          <select id="estado" name="estado">
-            <option value="activa">Activa</option>
-            <option value="en_produccion">En producción</option>
-            <option value="preñada">Preñada</option>
-            <option value="inactiva">Inactiva</option></select
-          ><br />
+<label for="estado-select">Estado:</label>
+<select id="estado-select" required>
+  <option value="Producción">Producción</option> <option value="Seca">Seca</option>
+  <option value="Muerta">Muerta</option>
+  <option value="Vendida">Vendida</option>
+</select>
 
-          <button type="submit">Registrar Animal</button>
+          <button type="submit" id="btn-guardar">Guardar Animal</button>
         </form>
+      </section>
+
+      <section id="resumen-inventario">
+        <h2>Resumen de Operación</h2>
+        <div class="stats-container" style="display: flex; gap: 20px; justify-content: space-around; text-align: center;">
+          <div class="stat-card">
+            <h3>Total Animales</h3>
+            <p id="stat-total">0</p>
+          </div>
+          <div class="stat-card" style="border-top-color: #27ae60;">
+            <h3>En Producción</h3>
+            <p id="stat-produccion">0</p>
+          </div>
+          <div class="stat-card" style="border-top-color: #f39c12;">
+            <h3>Secas / Otros</h3>
+            <p id="stat-secas">0</p>
+          </div>
+        </div>
       </section>
     </main>
 

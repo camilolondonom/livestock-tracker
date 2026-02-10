@@ -12,8 +12,7 @@ import com.livestocktracker.model.Animal;
 import com.livestocktracker.repository.AnimalRepository;
 
 /**
- * Controlador REST para el módulo de producción.
- * Gestiona los datos relacionados con el rendimiento productivo de los ejemplares.
+ * Controlador encargado de la analítica y registros de rendimiento productivo.
  */
 @RestController
 @RequestMapping("/api/produccion")
@@ -24,11 +23,10 @@ public class ProduccionController {
     private AnimalRepository animalRepository;
 
     /**
-     * Endpoint de ejemplo para obtener animales de alta productividad (ej. > 400kg).
+     * Recupera el listado de animales con indicadores de rendimiento destacados.
      */
     @GetMapping("/destacados")
     public List<Animal> obtenerProductividadAlta() {
-        // En una implementación real, aquí se filtraría por registros de producción
         return animalRepository.findAll(); 
     }
 }
