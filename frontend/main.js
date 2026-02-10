@@ -39,6 +39,11 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+
+  // 6. Boton de cerrar sesion
+  const btnCerrarNav = document.getElementById("btn-cerrar-sesion-nav");
+if (btnCerrarNav) btnCerrarNav.addEventListener("click", cerrarSesion);
+
 });
 
 // --- FUNCIONES DE USUARIO ---
@@ -59,10 +64,12 @@ async function manejarLogin(e) {
     });
 
     if (respuesta.ok) {
-      const usuario = await respuesta.json();
-      alert(`¡Bienvenido de nuevo, ${usuario.nombre}!`);
-      window.location.href = "dashboard.html";
-    } else {
+    const usuario = await respuesta.json();
+    // Guardamos los datos del usuario para usarlos en el perfil
+    localStorage.setItem("usuarioLogueado", JSON.stringify(usuario)); 
+    alert(`¡Bienvenido de nuevo, ${usuario.nombre}!`);
+    window.location.href = "dashboard.html";
+} else {
       alert("Error: Credenciales incorrectas");
     }
   } catch (error) {
@@ -94,6 +101,79 @@ async function manejarRegistroUsuario(e) {
   } catch (error) {
     console.error("Error al registrar usuario:", error);
   }
+}
+
+function cargarDatosPerfil() {
+    const datos = localStorage.getItem("usuarioLogueado");
+    if (datos) {
+        const usuario = JSON.parse(datos);
+        // Llenamos los textos
+        document.getElementById("perfil-nombre-texto").textContent = usuario.nombre;
+        document.getElementById("perfil-email-texto").textContent = usuario.email;
+        document.getElementById("perfil-rol-texto").textContent = usuario.rol;
+
+        // Llenamos los inputs del formulario por si quiere editar
+        document.getElementById("edit-nombre").value = usuario.nombre;
+        document.getElementById("edit-email").value = usuario.email;
+        document.getElementById("edit-rol").value = usuario.rol;
+    }
+
+    const datos = localStorage.getItem("usuarioLogueado");
+if (datos) {
+    const usuario = JSON.parse(datos);
+    const display = document.getElementById("nombre-usuario-display");
+    if (display) display.textContent = usuario.nombre;
+}
+}
+
+// --- LÓGICA DE PERFIL Y SESIÓN ---
+
+// Esta parte debe ir dentro del DOMContentLoaded para que el botón funcione
+document.addEventListener("DOMContentLoaded", () => {
+    // ... tus otros listeners ...
+
+    const btnCerrar = document.getElementById("btn-cerrar-sesion");
+    if (btnCerrar) {
+        btnCerrar.addEventListener("click", cerrarSesion);
+    }
+
+    // Si estamos en la página de perfil, cargamos los datos
+    if (document.getElementById("perfil-nombre-texto")) {
+        cargarDatosPerfil();
+    }
+});
+
+function cerrarSesion() {
+    // 1. Borramos los datos del usuario del navegador
+    localStorage.removeItem("usuarioLogueado");
+    
+    // 2. Opcional: Borrar todo por seguridad
+    // localStorage.clear(); 
+
+    // 3. Redirigir al inicio
+    alert("Has cerrado sesión correctamente.");
+    window.location.href = "index.html";
+}
+
+function cargarDatosPerfil() {
+    const datos = localStorage.getItem("usuarioLogueado");
+    
+    if (datos) {
+        const usuario = JSON.parse(datos);
+        
+        // Llenar los campos de texto (Info Personal)
+        document.getElementById("perfil-nombre-texto").textContent = usuario.nombre;
+        document.getElementById("perfil-email-texto").textContent = usuario.email;
+        document.getElementById("perfil-rol-texto").textContent = usuario.rol;
+
+        // Llenar los campos del formulario (Editar Perfil)
+        document.getElementById("edit-nombre").value = usuario.nombre;
+        document.getElementById("edit-email").value = usuario.email;
+        document.getElementById("edit-rol").value = usuario.rol;
+    } else {
+        // Si no hay datos, alguien entró sin loguearse
+        window.location.href = "index.html";
+    }
 }
 
 // --- FUNCIONES DE ANIMALES ---

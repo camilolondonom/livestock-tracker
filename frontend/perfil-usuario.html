@@ -15,57 +15,37 @@
   </header>
 
   <main>
-    <!--  Información del perfil -->
-    <section>
-      <h2>Información Personal</h2>
-      <p><strong>Nombre:</strong> Juan Pérez</p>
-      <p><strong>Correo electrónico:</strong> juan.perez@ejemplo.com</p>
-      <p><strong>Rol:</strong> Administrador</p>
-    </section>
+  <section>
+    <h2>Información Personal</h2>
+    <p><strong>Nombre:</strong> <span id="perfil-nombre-texto">Cargando...</span></p>
+    <p><strong>Correo electrónico:</strong> <span id="perfil-email-texto">Cargando...</span></p>
+    <p><strong>Rol:</strong> <span id="perfil-rol-texto">Cargando...</span></p>
+  </section>
 
-    <!--  Editar perfil -->
-    <section>
-      <h2>Editar Perfil</h2>
-      <form action="#" method="post">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" value="Juan Pérez"><br>
+  <section>
+    <h2>Editar Perfil</h2>
+    <form id="form-editar-perfil" autocomplete="off">
+      <label for="edit-nombre">Nombre:</label>
+      <input type="text" id="edit-nombre" required>
 
-        <label for="correo">Correo electrónico:</label>
-        <input type="email" id="correo" name="correo" value="juan.perez@ejemplo.com"><br>
+      <label for="edit-email">Correo electrónico:</label>
+      <input type="email" id="edit-email" required>
 
-        <label for="rol">Rol:</label>
-        <select id="rol" name="rol">
-          <option value="admin" selected>Administrador</option>
-          <option value="empleado">Empleado</option>
-        </select><br>
+      <label for="edit-rol">Rol:</label>
+      <select id="edit-rol">
+        <option value="ADMIN">Administrador</option>
+        <option value="EMPLEADO">Empleado</option>
+      </select>
 
-        <button type="submit">Guardar Cambios</button>
-      </form>
-    </section>
+      <button type="submit">Guardar Cambios</button>
+    </form>
+  </section>
 
-    <!--  Cambiar contraseña -->
-    <section>
-      <h2>Cambiar Contraseña</h2>
-      <form action="#" method="post">
-        <label for="password-actual">Contraseña actual:</label>
-        <input type="password" id="password-actual" name="password-actual"><br>
-
-        <label for="nueva-password">Nueva contraseña:</label>
-        <input type="password" id="nueva-password" name="nueva-password"><br>
-
-        <label for="confirmar-password">Confirmar nueva contraseña:</label>
-        <input type="password" id="confirmar-password" name="confirmar-password"><br>
-
-        <button type="submit">Actualizar Contraseña</button>
-      </form>
-    </section>
-
-    <!--  Cerrar sesión -->
-    <section>
-      <h2>Sesión</h2>
-      <a href="index.html">Cerrar sesión</a>
-    </section>
-  </main>
+  <section>
+    <h2>Sesión</h2>
+    <button id="btn-cerrar-sesion" class="btn-delete">Cerrar sesión</button>
+  </section>
+</main>
 
   <footer>
     <p>&copy; 2025 Livestock Tracker</p>
