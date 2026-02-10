@@ -270,26 +270,33 @@ async function manejarRegistroProduccion(e) {
     }
 }
 
+// Asegúrate de que esta función reemplace a la anterior en tu main.js
 async function cargarHistorialProduccion() {
     const tablaBody = document.getElementById("tabla-produccion-body");
-    if (!tablaBody) return; // Si no estamos en la página de producción, no hace nada
+    if (!tablaBody) return;
 
     try {
         const respuesta = await fetch("http://localhost:8080/api/produccion");
+        if (!respuesta.ok) throw new Error("Error en la respuesta del servidor");
+        
         const registros = await respuesta.json();
-
         tablaBody.innerHTML = "";
+        
         registros.forEach(reg => {
             const total = (reg.lecheManana || 0) + (reg.lecheTarde || 0);
+            // Validamos cuál es el nombre del ID que viene del backend
+            const idProduccion = reg.id_produccion || reg.id; 
+
             const fila = `
                 <tr>
                     <td>${reg.fecha}</td>
                     <td>${reg.chapeta}</td>
-                    <td>Cargando...</td> <td>${reg.lecheManana}</td>
-                    <td>${reg.lecheTarde}</td>
-                    <td><strong>${total.toFixed(1)}</strong></td>
+                    <td>Vaca Registrada</td> 
+                    <td>${reg.lecheManana} L</td>
+                    <td>${reg.lecheTarde} L</td>
+                    <td><strong>${total.toFixed(1)} L</strong></td>
                     <td>
-                        <button class="btn-delete" onclick="eliminarProduccion(${reg.id_produccion})">Borrar</button>
+                        <button class="btn-delete" onclick="eliminarProduccion(${idProduccion})">Borrar</button>
                     </td>
                 </tr>
             `;

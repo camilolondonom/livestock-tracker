@@ -30,16 +30,19 @@ public class AnimalController {
     }
 
     @PostMapping
-    public Animal guardar(@RequestBody Animal animal) {
-        return animalRepository.save(animal);
+    @SuppressWarnings("null")
+    public ResponseEntity<Animal> guardar(@RequestBody Animal animal) {
+        Animal nuevo = animalRepository.save(animal);
+        return ResponseEntity.ok(nuevo);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminar(@PathVariable Long id) {
-        return animalRepository.findById(id)
-                .map(record -> {
-                    animalRepository.deleteById(id);
-                    return ResponseEntity.ok().build();
-                }).orElse(ResponseEntity.notFound().build());
+    @SuppressWarnings("null")
+    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
+        if (animalRepository.existsById(id)) {
+            animalRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 }

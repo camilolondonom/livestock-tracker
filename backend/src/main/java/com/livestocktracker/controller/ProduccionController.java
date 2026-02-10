@@ -1,19 +1,10 @@
 package com.livestocktracker.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;      // NECESARIO
-import org.springframework.http.ResponseEntity;  // NECESARIO
-import org.springframework.web.bind.annotation.CrossOrigin; // Importa PostMapping, RequestBody, etc.
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import com.livestocktracker.model.Produccion;
 import com.livestocktracker.repository.ProduccionRepository;
 
@@ -31,27 +22,27 @@ public class ProduccionController {
     }
 
     @PostMapping
+    @SuppressWarnings("null")
     public ResponseEntity<Produccion> guardarProduccion(@RequestBody Produccion produccion) {
         try {
-            Produccion nuevaProduccion = produccionRepository.save(produccion);
-            return new ResponseEntity<>(nuevaProduccion, HttpStatus.CREATED);
+            Produccion nueva = produccionRepository.save(produccion);
+            return ResponseEntity.status(HttpStatus.CREATED).body(nueva);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<HttpStatus> eliminarProduccion(@PathVariable("id") Long id) {
+    @SuppressWarnings("null")
+    public ResponseEntity<Void> eliminarProduccion(@PathVariable Long id) {
         try {
-            // Verificamos si existe antes de borrar (buena práctica de arquitectura)
             if (produccionRepository.existsById(id)) {
                 produccionRepository.deleteById(id);
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                return ResponseEntity.noContent().build();
             }
+            return ResponseEntity.notFound().build();
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 }
