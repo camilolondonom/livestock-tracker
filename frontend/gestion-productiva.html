@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Gestión Productiva - Livestock Tracker</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 <body>
@@ -15,72 +16,58 @@
   </header>
 
   <main>
-    <!-- Registro de datos productivos -->
-    <section>
-      <h2>Registrar Producción</h2>
-      <form action="#" method="post">
-        <label for="animal-id">ID de chapeta:</label>
-        <input type="text" id="animal-id" name="animal-id"><br>
+  <section>
+    <h2>Registrar Producción Diaria</h2>
+    <form id="produccion-form" autocomplete="off">
+      <label for="prod-chapeta">ID de chapeta:</label>
+      <input type="text" id="prod-chapeta" required placeholder="Ej: 00123">
 
-        <label for="fecha">Fecha:</label>
-        <input type="date" id="fecha" name="fecha"><br>
+      <label for="prod-fecha">Fecha:</label>
+      <input type="date" id="prod-fecha" required>
 
-        <label for="leche">Litros de leche:</label>
-        <input type="number" id="leche" name="leche" step="0.1"><br>
+      <div style="display: flex; gap: 10px;">
+        <div style="flex: 1;">
+          <label for="leche-manana">Mañana (L):</label>
+          <input type="number" id="leche-manana" step="0.1" value="0">
+        </div>
+        <div style="flex: 1;">
+          <label for="leche-tarde">Tarde (L):</label>
+          <input type="number" id="leche-tarde" step="0.1" value="0">
+        </div>
+      </div>
 
-        <label for="peso">Peso (kg):</label>
-        <input type="number" id="peso" name="peso" step="0.1"><br>
+      <button type="submit" style="margin-top: 15px;">Guardar Registro</button>
+    </form>
+  </section>
 
-        <label for="alimentacion">Tipo de alimentación:</label>
-        <input type="text" id="alimentacion" name="alimentacion"><br>
-
-        <button type="submit">Guardar Registro</button>
-      </form>
-    </section>
-
-    <!-- Listado de registros -->
-    <section>
-      <h2>Historial de Producción</h2>
-      <table border="1">
+  <section>
+    <h2>Historial de Producción</h2>
+    <div class="table-container">
+      <table>
         <thead>
           <tr>
-            <th>ID</th>
             <th>Fecha</th>
-            <th>Leche (L)</th>
-            <th>Peso (kg)</th>
-            <th>Alimentación</th>
+            <th>Chapeta</th>
+            <th>Nombre</th>
+            <th>Mañana (L)</th>
+            <th>Tarde (L)</th>
+            <th>Total (L)</th>
+            <th>Acciones</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>00123</td>
-            <td>2025-06-01</td>
-            <td>12.5</td>
-            <td>450</td>
-            <td>Pasto + Concentrado</td>
-          </tr>
-          <tr>
-            <td>00456</td>
-            <td>2025-06-01</td>
-            <td>10.2</td>
-            <td>430</td>
-            <td>Solo pasto</td>
-          </tr>
-        </tbody>
+        <tbody id="tabla-produccion-body">
+          </tbody>
       </table>
-    </section>
+    </div>
+  </section>
 
-    <!-- Sección de gráficos -->
-    <section>
-      <h2>Gráficos de Producción</h2>
-      <p>[Espacio reservado para visualizaciones de producción por animal, por día, etc.]</p>
-      <ul>
-        <li><a href="#">Producción diaria por animal</a></li>
-        <li><a href="#">Peso vs producción</a></li>
-        <li><a href="#">Alimentación vs rendimiento</a></li>
-      </ul>
-    </section>
-  </main>
+  <section>
+    <h2>Gráfico de Producción vs Fecha</h2>
+    <div id="grafico-contenedor" style="width: 100%; height: 300px; background: #f9f9f9; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center;">
+      <canvas id="canvas-produccion"></canvas>
+    </div>
+  </section>
+</main>
 
   <footer>
     <p>&copy; 2025 Livestock Tracker</p>
