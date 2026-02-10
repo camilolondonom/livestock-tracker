@@ -3,275 +3,213 @@
 // ==========================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Manejo del Formulario de Login
-  const loginForm = document.getElementById("login-form");
-  if (loginForm) {
-    loginForm.addEventListener("submit", manejarLogin);
-  }
+    // 1. Manejo del Formulario de Login
+    const loginForm = document.getElementById("login-form");
+    if (loginForm) loginForm.addEventListener("submit", manejarLogin);
 
-  // 2. Manejo del Formulario de Registro de Usuario
-  const registerForm = document.getElementById("register-form");
-  if (registerForm) {
-    registerForm.addEventListener("submit", manejarRegistroUsuario);
-  }
+    // 2. Manejo del Formulario de Registro de Usuario
+    const registerForm = document.getElementById("register-form");
+    if (registerForm) registerForm.addEventListener("submit", manejarRegistroUsuario);
 
-  // 3. Carga automática de animales (si existe la tabla)
-  if (document.getElementById("tabla-animales-body")) {
-    cargarAnimalesDesdeBackend();
-  }
+    // 3. Carga automática de animales (si existe la tabla)
+    if (document.getElementById("tabla-animales-body")) {
+        cargarAnimalesDesdeBackend();
+    }
 
-  // 4. Manejo del Formulario de Registro de Animal (Ajustado al nuevo ID)
-  const animalForm = document.getElementById("animal-form");
-  if (animalForm) {
-    animalForm.addEventListener("submit", manejarRegistroAnimal);
-  }
+    // 4. Manejo del Formulario de Registro de Animal
+    const animalForm = document.getElementById("animal-form");
+    if (animalForm) animalForm.addEventListener("submit", manejarRegistroAnimal);
 
-  // 5. Buscador de animales por chapeta
-  const buscarInput = document.getElementById("buscar-id");
-  if (buscarInput) {
-    buscarInput.addEventListener("input", (e) => {
-      const texto = e.target.value.toLowerCase();
-      const filas = document.querySelectorAll("#tabla-animales-body tr");
+    // 5. Buscador de animales por chapeta
+    const buscarInput = document.getElementById("buscar-id");
+    if (buscarInput) {
+        buscarInput.addEventListener("input", (e) => {
+            const texto = e.target.value.toLowerCase();
+            const filas = document.querySelectorAll("#tabla-animales-body tr");
+            filas.forEach((fila) => {
+                const chapeta = fila.cells[0].textContent.toLowerCase();
+                fila.style.display = chapeta.includes(texto) ? "" : "none";
+            });
+        });
+    }
 
-      filas.forEach((fila) => {
-        const chapeta = fila.cells[0].textContent.toLowerCase();
-        fila.style.display = chapeta.includes(texto) ? "" : "none";
-      });
-    });
-  }
+    // 6. Botones de cerrar sesión (Nav y Perfil)
+    const btnCerrarNav = document.getElementById("btn-cerrar-sesion-nav");
+    if (btnCerrarNav) btnCerrarNav.addEventListener("click", cerrarSesion);
 
-  // 6. Boton de cerrar sesion
-  const btnCerrarNav = document.getElementById("btn-cerrar-sesion-nav");
-if (btnCerrarNav) btnCerrarNav.addEventListener("click", cerrarSesion);
+    const btnCerrarPerfil = document.getElementById("btn-cerrar-sesion");
+    if (btnCerrarPerfil) btnCerrarPerfil.addEventListener("click", cerrarSesion);
 
+    // 7. Carga de datos de usuario (Dashboard o Perfil)
+    cargarDatosPerfil();
 });
 
 // --- FUNCIONES DE USUARIO ---
 
 async function manejarLogin(e) {
-  e.preventDefault();
+    e.preventDefault();
+    const email = document.getElementById("login-email").value;
+    const contrasena = document.getElementById("login-password").value;
 
-  // ANTES: document.getElementById("username")
-  // AHORA: Coincide con tu nuevo HTML
-  const email = document.getElementById("login-email").value;
-  const contrasena = document.getElementById("login-password").value;
+    try {
+        const respuesta = await fetch("http://localhost:8080/api/usuarios/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, contrasena }),
+        });
 
-  try {
-    const respuesta = await fetch("http://localhost:8080/api/usuarios/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, contrasena }),
-    });
-
-    if (respuesta.ok) {
-    const usuario = await respuesta.json();
-    // Guardamos los datos del usuario para usarlos en el perfil
-    localStorage.setItem("usuarioLogueado", JSON.stringify(usuario)); 
-    alert(`¡Bienvenido de nuevo, ${usuario.nombre}!`);
-    window.location.href = "dashboard.html";
-} else {
-      alert("Error: Credenciales incorrectas");
+        if (respuesta.ok) {
+            const usuario = await respuesta.json();
+            localStorage.setItem("usuarioLogueado", JSON.stringify(usuario));
+            alert(`¡Bienvenido de nuevo, ${usuario.nombre}!`);
+            window.location.href = "dashboard.html";
+        } else {
+            alert("Error: Credenciales incorrectas");
+        }
+    } catch (error) {
+        console.error("Error al iniciar sesión:", error);
+        alert("No se pudo conectar con el servidor.");
     }
-  } catch (error) {
-    console.error("Error al iniciar sesión:", error);
-    alert("No se pudo conectar con el servidor.");
-  }
 }
 
 async function manejarRegistroUsuario(e) {
-  e.preventDefault();
-  const nuevoUsuario = {
-    nombre: document.getElementById("reg-username").value,
-    email: document.getElementById("reg-email").value,
-    contrasena: document.getElementById("reg-password").value,
-    rol: "ADMIN",
-  };
+    e.preventDefault();
+    const nuevoUsuario = {
+        nombre: document.getElementById("reg-username").value,
+        email: document.getElementById("reg-email").value,
+        contrasena: document.getElementById("reg-password").value,
+        rol: "ADMIN",
+    };
 
-  try {
-    const respuesta = await fetch("http://localhost:8080/api/usuarios", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(nuevoUsuario),
-    });
+    try {
+        const respuesta = await fetch("http://localhost:8080/api/usuarios", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(nuevoUsuario),
+        });
 
-    if (respuesta.ok) {
-      alert("¡Usuario creado con éxito!");
-      e.target.reset();
+        if (respuesta.ok) {
+            alert("¡Usuario creado con éxito!");
+            e.target.reset();
+        }
+    } catch (error) {
+        console.error("Error al registrar usuario:", error);
     }
-  } catch (error) {
-    console.error("Error al registrar usuario:", error);
-  }
 }
 
 function cargarDatosPerfil() {
     const datos = localStorage.getItem("usuarioLogueado");
     if (datos) {
         const usuario = JSON.parse(datos);
-        // Llenamos los textos
-        document.getElementById("perfil-nombre-texto").textContent = usuario.nombre;
-        document.getElementById("perfil-email-texto").textContent = usuario.email;
-        document.getElementById("perfil-rol-texto").textContent = usuario.rol;
 
-        // Llenamos los inputs del formulario por si quiere editar
-        document.getElementById("edit-nombre").value = usuario.nombre;
-        document.getElementById("edit-email").value = usuario.email;
-        document.getElementById("edit-rol").value = usuario.rol;
+        // Lógica para la página de Perfil
+        const nombreTexto = document.getElementById("perfil-nombre-texto");
+        if (nombreTexto) {
+            nombreTexto.textContent = usuario.nombre;
+            document.getElementById("perfil-email-texto").textContent = usuario.email;
+            document.getElementById("perfil-rol-texto").textContent = usuario.rol;
+            document.getElementById("edit-nombre").value = usuario.nombre;
+            document.getElementById("edit-email").value = usuario.email;
+            document.getElementById("edit-rol").value = usuario.rol;
+        }
+
+        // Lógica para el Dashboard
+        const displayNombre = document.getElementById("user-name-display");
+        if (displayNombre) {
+            displayNombre.textContent = usuario.nombre;
+        }
+    } else {
+        // Si no hay datos y no estamos en el login, redirigir al index
+        const esPaginaPublica = window.location.pathname.includes("index.html") || window.location.pathname === "/";
+        if (!esPaginaPublica) {
+            window.location.href = "index.html";
+        }
     }
-
-    const datos = localStorage.getItem("usuarioLogueado");
-if (datos) {
-    const usuario = JSON.parse(datos);
-    const display = document.getElementById("nombre-usuario-display");
-    if (display) display.textContent = usuario.nombre;
 }
-}
-
-// --- LÓGICA DE PERFIL Y SESIÓN ---
-
-// Esta parte debe ir dentro del DOMContentLoaded para que el botón funcione
-document.addEventListener("DOMContentLoaded", () => {
-    // ... tus otros listeners ...
-
-    const btnCerrar = document.getElementById("btn-cerrar-sesion");
-    if (btnCerrar) {
-        btnCerrar.addEventListener("click", cerrarSesion);
-    }
-
-    // Si estamos en la página de perfil, cargamos los datos
-    if (document.getElementById("perfil-nombre-texto")) {
-        cargarDatosPerfil();
-    }
-});
 
 function cerrarSesion() {
-    // 1. Borramos los datos del usuario del navegador
     localStorage.removeItem("usuarioLogueado");
-    
-    // 2. Opcional: Borrar todo por seguridad
-    // localStorage.clear(); 
-
-    // 3. Redirigir al inicio
     alert("Has cerrado sesión correctamente.");
     window.location.href = "index.html";
-}
-
-function cargarDatosPerfil() {
-    const datos = localStorage.getItem("usuarioLogueado");
-    
-    if (datos) {
-        const usuario = JSON.parse(datos);
-        
-        // Llenar los campos de texto (Info Personal)
-        document.getElementById("perfil-nombre-texto").textContent = usuario.nombre;
-        document.getElementById("perfil-email-texto").textContent = usuario.email;
-        document.getElementById("perfil-rol-texto").textContent = usuario.rol;
-
-        // Llenar los campos del formulario (Editar Perfil)
-        document.getElementById("edit-nombre").value = usuario.nombre;
-        document.getElementById("edit-email").value = usuario.email;
-        document.getElementById("edit-rol").value = usuario.rol;
-    } else {
-        // Si no hay datos, alguien entró sin loguearse
-        window.location.href = "index.html";
-    }
 }
 
 // --- FUNCIONES DE ANIMALES ---
 
 async function cargarAnimalesDesdeBackend() {
-  try {
-    const respuesta = await fetch("http://localhost:8080/api/animales");
-    const animales = await respuesta.json();
-    const tablaBody = document.getElementById("tabla-animales-body");
+    try {
+        const respuesta = await fetch("http://localhost:8080/api/animales");
+        const animales = await respuesta.json();
+        const tablaBody = document.getElementById("tabla-animales-body");
 
-    // Variables para los contadores
-    let total = animales.length;
-    let produccion = 0;
-    let secas = 0;
+        let total = animales.length;
+        let produccion = 0;
+        let secas = 0;
 
-    tablaBody.innerHTML = "";
-    animales.forEach((animal) => {
-      // Lógica de conteo
-      const esProduccion =
-        animal.estado && animal.estado.toLowerCase().includes("producción");
+        tablaBody.innerHTML = "";
+        animales.forEach((animal) => {
+            const esProduccion = animal.estado && animal.estado.toLowerCase().includes("producción");
+            if (esProduccion) produccion++; else secas++;
 
-      if (esProduccion) {
-        produccion++;
-      } else {
-        secas++;
-      }
+            const estadoClase = esProduccion ? "badge-produccion" : "badge-reproduccion";
 
-      // Lógica de Badges (Colores)
-      const estadoClase = esProduccion
-        ? "badge-produccion"
-        : "badge-reproduccion";
-
-      const fila = `
+            const fila = `
                 <tr>
                     <td><strong>${animal.chapeta}</strong></td>
                     <td>${animal.nombre || "Sin nombre"}</td>
                     <td>${animal.raza}</td>
-                    <td>${animal.edad}</td> 
+                    <td>${animal.edad || 0}</td> 
                     <td><span class="badge ${estadoClase}">${animal.estado || "Activo"}</span></td>
                     <td>
                         <button onclick="eliminarAnimal(${animal.id})" class="btn-delete">Eliminar</button>
                     </td>
                 </tr>
             `;
-      tablaBody.innerHTML += fila;
-    });
+            tablaBody.innerHTML += fila;
+        });
 
-    // ACTUALIZAR LOS NÚMEROS EN LA PANTALLA
-    document.getElementById("stat-total").textContent = total;
-    document.getElementById("stat-produccion").textContent = produccion;
-    document.getElementById("stat-secas").textContent = secas;
-  } catch (error) {
-    console.error("Error al cargar animales:", error);
-  }
-}
-async function manejarRegistroAnimal(e) {
-  e.preventDefault();
-
-  // Obtener los datos del formulario
-  // Dentro de manejarRegistroAnimal(e)
-  const nuevoAnimal = {
-    chapeta: document.getElementById("chapeta").value,
-    nombre: document.getElementById("nombre").value,
-    raza: document.getElementById("raza").value,
-    fechaNacimiento: document.getElementById("fechaNacimiento").value,
-    estado: document.getElementById("estado-select").value, // <--- Cambiado aquí
-  };
-
-  try {
-    const respuesta = await fetch("http://localhost:8080/api/animales", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(nuevoAnimal),
-    });
-
-    if (respuesta.ok) {
-      alert("¡Animal registrado con éxito!");
-      location.reload();
+        if (document.getElementById("stat-total")) {
+            document.getElementById("stat-total").textContent = total;
+            document.getElementById("stat-produccion").textContent = produccion;
+            document.getElementById("stat-secas").textContent = secas;
+        }
+    } catch (error) {
+        console.error("Error al cargar animales:", error);
     }
-  } catch (error) {
-    console.error("Error:", error);
-  }
+}
+
+async function manejarRegistroAnimal(e) {
+    e.preventDefault();
+    const nuevoAnimal = {
+        chapeta: document.getElementById("chapeta").value,
+        nombre: document.getElementById("nombre").value,
+        raza: document.getElementById("raza").value,
+        fechaNacimiento: document.getElementById("fechaNacimiento").value,
+        estado: document.getElementById("estado-select").value,
+    };
+
+    try {
+        const respuesta = await fetch("http://localhost:8080/api/animales", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(nuevoAnimal),
+        });
+
+        if (respuesta.ok) {
+            alert("¡Animal registrado con éxito!");
+            location.reload();
+        }
+    } catch (error) {
+        console.error("Error:", error);
+    }
 }
 
 async function eliminarAnimal(id) {
-  if (confirm("¿Estás seguro de eliminar este registro?")) {
-    try {
-      const respuesta = await fetch(
-        `http://localhost:8080/api/animales/${id}`,
-        {
-          method: "DELETE",
-        },
-      );
-      if (respuesta.ok) {
-        location.reload();
-      }
-    } catch (error) {
-      alert("No se pudo eliminar.");
+    if (confirm("¿Estás seguro de eliminar este registro?")) {
+        try {
+            const respuesta = await fetch(`http://localhost:8080/api/animales/${id}`, { method: "DELETE" });
+            if (respuesta.ok) location.reload();
+        } catch (error) {
+            alert("No se pudo eliminar.");
+        }
     }
-  }
 }
