@@ -1,14 +1,19 @@
-# Livestock Tracker - Gestión Ganadera
+# Livestock Tracker - Módulos de Software Codificados
 
-Sistema de control de inventario animal y producción lechera.
+Este repositorio contiene la codificación y pruebas de los módulos principales del proyecto formativo **Livestock Tracker**, desarrollado para la gestión eficiente de hatos ganaderos.
 
-## 🚀 Tecnologías utilizadas
-- **Backend:** Java 17, Spring Boot 3, Spring Data JPA.
-- **Frontend:** HTML5, CSS3, JavaScript (Vanilla).
-- **Base de Datos:** MySQL 8.0.
+## 🚀 Funcionalidades Implementadas
+* **Módulo de Autenticación:** Registro e inicio de sesión seguro con validación de credenciales.
+* **Módulo de Inventario:** Gestión completa (CRUD) de semovientes con filtros de búsqueda por chapeta.
+* **Módulo de Producción:** Registro diario de producción láctea y seguimiento de rendimiento.
 
-## 🛠️ Instalación
-1. Importar la base de datos desde el archivo SQL incluido.
-2. Configurar `application.properties` con tus credenciales de MySQL.
-3. Ejecutar el backend con Maven o desde tu IDE.
-4. Abrir el frontend con Live Server.
+## 🛠️ Tecnologías Utilizadas
+* **Backend:** Java 17 con Spring Boot.
+* **Frontend:** HTML5, CSS3 y JavaScript (Vanilla JS).
+* **Base de Datos:** MySQL.
+* **Seguridad:** Gestión de sesiones y protección de rutas.
+
+## 📦 Instrucciones de Entrega
+Este repositorio corresponde a la evidencia **GA7-220501096-AA3-EV02**. Incluye la lógica de negocio, controladores y la interfaz de usuario funcional demostrada en el video de evidencia.
+
+**Desarrollado por:** Camilo Londoño
