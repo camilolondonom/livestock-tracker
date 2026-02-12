@@ -1,43 +1,13 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Inicio de Sesión - Software Ganadero</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>frontend</title>
   </head>
   <body>
-    <h1>Software de Gestión Ganadera</h1>
-
-    <section id="login">
-  <h2>Iniciar Sesión</h2>
-  <form id="login-form" autocomplete="off">
-    <label for="login-email">Correo electrónico:</label>
-    <input type="email" id="login-email" readonly onfocus="this.removeAttribute('readonly');" required />
-
-    <label for="login-password">Contraseña:</label>
-    <input type="password" id="login-password" readonly onfocus="this.removeAttribute('readonly');" required />
-
-    <button type="submit">Ingresar</button>
-  </form>
-</section>
-
-    <hr />
-    <section id="register">
-  <h2>Registrarse</h2>
-  <form id="register-form" autocomplete="off">
-    <label for="reg-username">Nombre de Usuario:</label>
-    <input type="text" id="reg-username" readonly onfocus="this.removeAttribute('readonly');" required />
-
-    <label for="reg-email">Correo:</label>
-    <input type="email" id="reg-email" readonly onfocus="this.removeAttribute('readonly');" required />
-
-    <label for="reg-password">Contraseña:</label>
-    <input type="password" id="reg-password" readonly onfocus="this.removeAttribute('readonly');" required />
-
-    <button type="submit">Crear cuenta</button>
-  </form>
-</section>
-
-    <script src="main.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
