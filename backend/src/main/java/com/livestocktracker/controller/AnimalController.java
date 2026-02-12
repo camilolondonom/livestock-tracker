@@ -18,7 +18,7 @@ import com.livestocktracker.repository.AnimalRepository;
 
 @RestController
 @RequestMapping("/api/animales")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:5173")
 public class AnimalController {
 
     @Autowired
