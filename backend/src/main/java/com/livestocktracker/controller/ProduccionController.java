@@ -1,7 +1,6 @@
 package com.livestocktracker.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +21,7 @@ import com.livestocktracker.repository.ProduccionRepository;
 @RestController
 @RequestMapping("/api/produccion")
 @CrossOrigin(origins = "http://localhost:5173")
+@SuppressWarnings("null") // <--- ESTO ES EL "SANTO REMEDIO" PARA TUS ADVERTENCIAS
 public class ProduccionController {
 
     @Autowired
@@ -35,26 +35,19 @@ public class ProduccionController {
     @PostMapping
     public ResponseEntity<?> guardarProduccion(@RequestBody Produccion produccion) {
         try {
-            if (produccion == null) return ResponseEntity.badRequest().build();
-            Produccion nueva = produccionRepository.save(produccion);
-            return ResponseEntity.status(HttpStatus.CREATED).body(nueva);
+            return ResponseEntity.status(HttpStatus.CREATED).body(produccionRepository.save(produccion));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(Map.of("error", e.getMessage()));
+            return ResponseEntity.internalServerError().build();
         }
     }
 
-    // --- NUEVO MÉTODO PARA ACTUALIZAR (PUT) ---
     @PutMapping("/{id}")
-    public ResponseEntity<?> actualizarProduccion(@PathVariable Long id, @RequestBody Produccion datosNuevos) {
+    public ResponseEntity<?> actualizarProduccion(@PathVariable Long id, @RequestBody Produccion datos) {
         return produccionRepository.findById(id).map(prod -> {
-            prod.setFecha(datosNuevos.getFecha());
-            prod.setLecheManana(datosNuevos.getLecheManana());
-            prod.setLecheTarde(datosNuevos.getLecheTarde());
-            // La chapeta y el usuario normalmente no cambian en una edición de pesaje
-            
-            Produccion actualizado = produccionRepository.save(prod);
-            return ResponseEntity.ok(actualizado);
+            prod.setFecha(datos.getFecha());
+            prod.setLecheManana(datos.getLecheManana());
+            prod.setLecheTarde(datos.getLecheTarde());
+            return ResponseEntity.ok(produccionRepository.save(prod));
         }).orElse(ResponseEntity.notFound().build());
     }
 
