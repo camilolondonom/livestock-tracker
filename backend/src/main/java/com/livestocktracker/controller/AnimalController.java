@@ -50,10 +50,10 @@ public class AnimalController {
         }
     }
 
-    @DeleteMapping("/{id}")
-    @SuppressWarnings("null")
+   @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
-        if (animalRepository.existsById(id)) {
+        // Validamos que el ID no sea nulo antes de operar
+        if (id != null && animalRepository.existsById(id)) {
             animalRepository.deleteById(id);
             return ResponseEntity.ok().build();
         }
@@ -61,17 +61,19 @@ public class AnimalController {
     }
 
     @PutMapping("/{id}")
-public ResponseEntity<?> actualizar(@PathVariable Long id, @RequestBody Animal datosNuevos) {
-    return animalRepository.findById(id).map(animal -> {
-        animal.setNombre(datosNuevos.getNombre());
-        animal.setRaza(datosNuevos.getRaza());
-        animal.setFechaNacimiento(datosNuevos.getFechaNacimiento());
-        animal.setEstado(datosNuevos.getEstado());
-        // La chapeta normalmente no se edita porque es el ID visual, 
-        // pero si quieres permitirlo, añade: animal.setChapeta(datosNuevos.getChapeta());
-        
-        Animal actualizado = animalRepository.save(animal);
-        return ResponseEntity.ok(actualizado);
-    }).orElse(ResponseEntity.notFound().build());
-}
+    public ResponseEntity<?> actualizar(@PathVariable Long id, @RequestBody Animal datosNuevos) {
+        if (id == null) {
+            return ResponseEntity.badRequest().body(java.util.Map.of("error", "El ID no puede ser nulo"));
+        }
+
+        return animalRepository.findById(id).map(animal -> {
+            animal.setNombre(datosNuevos.getNombre());
+            animal.setRaza(datosNuevos.getRaza());
+            animal.setFechaNacimiento(datosNuevos.getFechaNacimiento());
+            animal.setEstado(datosNuevos.getEstado());
+            
+            Animal actualizado = animalRepository.save(animal);
+            return ResponseEntity.ok(actualizado);
+        }).orElse(ResponseEntity.notFound().build());
+    }
 }
