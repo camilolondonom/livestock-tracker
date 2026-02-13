@@ -3,6 +3,7 @@ package com.livestocktracker.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,10 +31,22 @@ public class AnimalController {
     }
 
     @PostMapping
-    @SuppressWarnings("null")
-    public ResponseEntity<Animal> guardar(@RequestBody Animal animal) {
-        Animal nuevo = animalRepository.save(animal);
-        return ResponseEntity.ok(nuevo);
+    public ResponseEntity<?> guardar(@RequestBody Animal animal) { // Cambiamos <Animal> por <?>
+        try {
+            // 1. Validar si la chapeta ya existe
+            if (animalRepository.findByChapeta(animal.getChapeta()).isPresent()) {
+                return ResponseEntity.status(HttpStatus.CONFLICT)
+                        .body(java.util.Map.of("error", "El animal con la chapeta " + animal.getChapeta() + " ya está registrado."));
+            }
+            
+            // 2. Guardar el animal
+            Animal nuevo = animalRepository.save(animal);
+            return ResponseEntity.status(HttpStatus.CREATED).body(nuevo);
+            
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(java.util.Map.of("error", "Error interno: " + e.getMessage()));
+        }
     }
 
     @DeleteMapping("/{id}")

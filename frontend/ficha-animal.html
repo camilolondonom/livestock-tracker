@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ficha del Animal - Livestock Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+  <header>
+    <h1>Ficha del Animal</h1>
+    <nav>
+      <a href="gestion-animales.html">← Volver a Gestión de Animales</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Información general -->
+    <section>
+      <h2>Información General</h2>
+      <p><strong>ID Chapeta:</strong> 00123</p>
+      <p><strong>Nombre:</strong> Estrella</p>
+      <p><strong>Raza:</strong> Holstein</p>
+      <p><strong>Sexo:</strong> Hembra</p>
+      <p><strong>Fecha de nacimiento:</strong> 2021-03-15</p>
+      <p><strong>Estado actual:</strong> Gestando</p>
+    </section>
+
+    <!-- Datos productivos -->
+    <section>
+      <h2>Producción</h2>
+      <p><strong>Último peso registrado:</strong> 530 kg (2025-05-30)</p>
+      <p><strong>Promedio de producción de leche diaria:</strong> 18 L</p>
+      <p><strong>Alimentación:</strong> Pastoreo libre + Suplemento concentrado</p>
+    </section>
+
+    <!-- Historial reproductivo -->
+    <section>
+      <h2>Historial Reproductivo</h2>
+      <ul>
+        <li><strong>Último celo:</strong> 2025-04-25</li>
+        <li><strong>Último servicio:</strong> 2025-04-27 (IA)</li>
+        <li><strong>Gestación confirmada:</strong> 2025-05-20</li>
+        <li><strong>Parto estimado:</strong> 2026-01-30</li>
+      </ul>
+    </section>
+
+    <!-- Acciones -->
+    <section>
+      <h2>Acciones</h2>
+      <button onclick="location.href='editar-animal.html'">Editar Datos</button>
+      <button onclick="location.href='gestion-reproductiva.html'">Registrar Evento Reproductivo</button>
+      <button onclick="location.href='gestion-productiva.html'">Registrar Datos Productivos</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Livestock Tracker</p>
+  </footer>
+</body>
+</html>
