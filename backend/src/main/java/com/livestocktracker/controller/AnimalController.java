@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -58,4 +59,19 @@ public class AnimalController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    @PutMapping("/{id}")
+public ResponseEntity<?> actualizar(@PathVariable Long id, @RequestBody Animal datosNuevos) {
+    return animalRepository.findById(id).map(animal -> {
+        animal.setNombre(datosNuevos.getNombre());
+        animal.setRaza(datosNuevos.getRaza());
+        animal.setFechaNacimiento(datosNuevos.getFechaNacimiento());
+        animal.setEstado(datosNuevos.getEstado());
+        // La chapeta normalmente no se edita porque es el ID visual, 
+        // pero si quieres permitirlo, añade: animal.setChapeta(datosNuevos.getChapeta());
+        
+        Animal actualizado = animalRepository.save(animal);
+        return ResponseEntity.ok(actualizado);
+    }).orElse(ResponseEntity.notFound().build());
+}
 }
